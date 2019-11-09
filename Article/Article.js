@@ -112,3 +112,54 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+//Creating Elements
+const createArticle = (info) => {
+  const articleDiv = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const paragraphOne = document.createElement('p');
+  const paragraphTwo = document.createElement('p');
+  const paragraphThree = document.createElement('p');
+  const articleBtn = document.createElement('span');
+
+
+  //add classes to article component
+  articleDiv.classList.add('article');
+  articleDate.classList.add('date');
+  articleBtn.classList.add('expandButton');
+
+  //append the elements
+  articleDiv.appendChild(articleTitle);
+  articleDiv.appendChild(articleDate);
+  articleDiv.appendChild(paragraphOne);
+  articleDiv.appendChild(paragraphTwo);
+  articleDiv.appendChild(paragraphThree);
+  articleDiv.appendChild(articleBtn);
+
+  //add content
+  articleTitle.textContent = info.title;
+  articleDate.textContent = info.date;
+  paragraphOne.textContent = info.firstParagraph;
+  paragraphTwo.textContent = info.secondParagraph;
+  paragraphThree.textContent = info.thirdParagraph;
+  articleBtn.textContent = '\u25bc';
+
+  //add functionality
+  articleBtn.addEventListener("click", () => {
+    articleDiv.classList.toggle('article-open');
+    console.log('clicked!')
+  })
+  
+  //return article component
+console.log('article component here');
+return articleDiv;
+}
+
+const parentComponent = document.querySelector('.articles');
+
+data.forEach(e => {
+  parentComponent.appendChild(createArticle(e));
+})
+
+
+
